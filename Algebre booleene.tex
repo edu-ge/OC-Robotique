@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+\usepackage{fancyhdr}    % Package pour personnaliser les en-têtes et pieds de page
+\usepackage{hyperref}
+
+\pagestyle{fancy}        % Utilisation du style "fancy"
+\fancyhf{}               % Réinitialisation des en-têtes et pieds de page
+\fancyhead[L]{Edoardo Basilico et Vincent Namy }   % Pied de page à gauche
+\fancyhead[C]{OC Robotique}  % Pied de page C
+\fancyhead[R]{2024-2025 -- Collège Sismondi}  % Pied de page à droite
+\fancyfoot[C]{Sources : Cours de Systèmes Logiques de T. Kluter - EPFL - 2012 \&  \href{https://mrproof.blogspot.com/2012/10/algebre-de-boole-exos-corriges.html}{mrproof.blogspot.com}}       % Pied de page au centre avec la date actuelle
+
+\makeatletter% since there's an at-sign (@) in the command name
+\let\ps@plain\ps@fancy 
+\makeatother
+
+\setlength{\columnsep}{4cm}  % Définit l'espace entre les colonnes à 1 cm
+
+\title{\vspace{-5ex}Algèbre booléenne}
+\date{\vspace{-5ex}}
+
+
+\begin{document}
+
+\maketitle
+\section{Théorie}
+
+\begin{multicols}{2}
+\subsection{Propriétés élémentaires}
+\begin{align}
+    A \cdot A & = A \\
+    A + A & = A \\
+    A \oplus A & = 0 
+\end{align}
+
+\subsection{Complémentarité}
+\begin{align}
+    A \cdot \overline{A} & = 0 \\
+    A + \overline{A} & = 1 \\
+    A \oplus \overline{A} & = 1 \\
+    \overline{\overline{A}} & = A 
+\end{align}
+
+\subsection{Commutativité}
+\begin{align}
+    A \cdot B & = B \cdot A \\
+    A + B & = B + A 
+\end{align}
+
+\subsection{Constantes}
+\begin{align}
+    A \cdot 0 & = 0 \\
+    A \cdot 1 & = A \\
+    A + 0 & = A \\
+    A + 1 & = 1 \\
+    A \oplus 0 & = A \\
+    A \oplus 1 & = \overline{A}
+\end{align}
+
+\subsection{Associativité}
+\begin{align}
+    A \cdot (B \cdot C) & = (A \cdot B) \cdot C \\
+    A + (B + C) & = (A + B) + C 
+\end{align}
+
+\subsection{Distributivité}
+\begin{align}
+    A \cdot (B + C) & = (A \cdot B) + (A \cdot C) \\
+    A + (B \cdot C) & = (A + B) \cdot (A + C) 
+\end{align}
+
+\subsection{Théorème d'August de Morgan (1806-1871)}
+\begin{align}
+    \overline{(A \cdot B)} & = \overline{A} + \overline{B} \\
+    \overline{(A + B)} & = \overline{A} \cdot \overline{B} 
+\end{align}
+
+
+\subsection{Autres propriétés}
+\begin{align}
+    A + \overline{A}\cdot B & =A+B
+\end{align}
+
+\end{multicols}
+
+\vspace{15pt}
+
+\section{Exercices}
+
+%\begin{multicols}{2}
+\[ F_1 = a \cdot (a + b) \]
+\[ F_2 = (a + b) \cdot (\overline{a} + b) \]
+\[ F_3 = a \cdot b + \overline{c} + c \cdot (\overline{a} + \overline{b}) \]
+\[ F_4 = (x \cdot \overline{y} + z) \cdot (x + \overline{y}) \cdot z \]
+\[ F_5 = (x + y) \cdot z + \overline{x} \cdot (\overline{y} + z) + \overline{y} \]
+\[ F_6 = (a + b + c) \cdot (\overline{a} + b + c) + a \cdot b + b \cdot c \]
+\[ F_7 = a + a \cdot b \cdot c + \overline{a} \cdot b \cdot c + \overline{a} \cdot b + a \cdot d + a \cdot \overline{d} \]
+\[ F_8 = a + \overline{a} \cdot b + \overline{a} \cdot \overline{b} \cdot c + \overline{a} \cdot \overline{b}\cdot \overline{c} \cdot d  + \overline{a} \cdot \overline{b}\cdot \overline{c} \cdot \overline{d}  \cdot e \]
+\[ F_9 = (a + b) \cdot (a + b \cdot c) + \overline{a} \cdot \overline{b} + \overline{a} \cdot \overline{c} \]
+%\end{multicols}
+
+\newpage
+\subsection*{Corrigés}
+
+\begin{multicols}{2}
+\[ F_1 = a \cdot (a + b) \]
+\[ F_1 = a \cdot a + a \cdot b \]
+\[ F_1 = a + a \cdot b \]
+\[ F_1 = a \cdot (1 + b) \]
+\[ F_1 = a \cdot 1 \]
+\[ F_1 = a \]
+
+
+\[ F_2 = (a + b) \cdot (\overline{a} + b) \]
+\[ F_2 = a \cdot \overline{a} + a \cdot b + \overline{a} \cdot b + b \cdot b \]
+\[ F_2 = 0 + a \cdot b + \overline{a} \cdot b + b \]
+\[ F_2 = b \cdot (1 + \overline{a} + a) \]
+\[ F_2 = b \]
+
+
+\[ F_3 = a \cdot b + \overline{c} + c \cdot (\overline{a} + \overline{b}) \]
+\[ F_3 = a \cdot b + \overline{c} + \overline{(\overline{(c \cdot (\overline{a} + \overline{b}))})} \]
+\[ F_3 = a \cdot b + \overline{c} + \overline{(\overline{c} + a \cdot b)} \]
+\[ F_3 = d + \overline{d} = 1 \]
+
+\[ F_4 = (x \cdot \overline{y} + z) \cdot (x + \overline{y}) \cdot z \]
+\[ F_4 = (x \cdot \overline{y}+ z) \cdot (x \cdot z + \overline{y} \cdot z) \]
+\[ F_4 = x \cdot \overline{y} \cdot x \cdot z + z \cdot x \cdot z + x \cdot \overline{y} \cdot \overline{y} \cdot z + \overline{y} \cdot z \cdot z \]
+\[ F_4 = x \cdot \overline{y} \cdot z + x \cdot z + x \cdot \overline{y} \cdot z + \overline{y} \cdot z \]
+\[ F_4 = x \cdot z + \overline{y} \cdot z \cdot (1 + x) \]
+\[ F_4 = x \cdot z + \overline{y} \cdot z \]
+\[ F_4 = (x + \overline{y}) \cdot z \]
+
+
+\[ F_5 = (x + y) \cdot z + \overline{x} \cdot (\overline{y} + z) + \overline{y} \]
+\[ F_5 = x \cdot z + y \cdot z + \overline{y} \cdot \overline{x} + \overline{x} \cdot z + \overline{y} \]
+\[ F_5 = (x + y + \overline{x}) \cdot z + \overline{y} \cdot (1 + x) \]
+\[ F_5 = z + \overline{y} \]
+
+
+\[ F_6 = (a + b + c) \cdot (\overline{a} + b + c) + a \cdot b + b \cdot c \]
+\[ F_6 = a \cdot \overline{a} + a \cdot b + a \cdot c + \overline{a} \cdot b + b \cdot b + b \cdot c + \overline{a} \cdot c + b \cdot c + a \cdot b \cdot c \]
+\[ F_6 = a \cdot b + a \cdot c + \overline{a}\cdot b +b +b\cdot c + \overline{a} \cdot c + b \cdot c +c + a \cdot b + b\cdot c \]
+\[ F_6 = (a + \overline{a} + 1 + c + c + a + c ) \cdot b + (\overline{a} + 1 + a) \cdot c \]
+\[ F_6 = b + c \]
+
+
+\[ F_7 = a + a \cdot b \cdot c + \overline{a} \cdot b \cdot c + \overline{a} \cdot b + a \cdot d + a \cdot \overline{d} \]
+\[ F_7 = a \cdot (1 + b \cdot c + d + \overline{d}) + \overline{a} \cdot (b \cdot c + b) \]
+\[ F_7 = a + \overline{a} \cdot (b \cdot (c + 1)) \]
+\[ F_7 = a + \overline{a} \cdot b \]
+\[ F_7 = a + b \]
+
+
+\[ F_8 = a + \overline{a} \cdot b + \overline{a} \cdot \overline{b} \cdot c + \overline{a} \cdot \overline{b}\cdot \overline{c} \cdot d  + \overline{a} \cdot \overline{b}\cdot \overline{c} \cdot \overline{d}  \cdot e \]
+\[ F_8 = a + \overline{a} \cdot (b + \overline{b} \cdot (c + \overline{c} \cdot (\overline{d} + e))) \]
+\[ F_8 = a + b + c + d + e \]
+
+
+\[ F_9 = (a + b) \cdot (a + b \cdot c) + \overline{a} \cdot \overline{b} + \overline{a} \cdot \overline{c} \]
+\[ F_9 = a \cdot a + a \cdot b \cdot c + a \cdot b + b \cdot b \cdot c + \overline{a} \cdot \overline{b} + \overline{a} \cdot \overline{c}\]
+\[ F_9 = a + a \cdot  b \cdot c + a \cdot b + b \cdot c  + \overline{a} \cdot \overline{b} + \overline{a} \cdot \overline{c} \]
+\[ F_9 = a \cdot (1 + b \cdot c+ b) + b \cdot c  + \overline{a} \cdot \overline{b} + \overline{a} \cdot \overline{c} \]
+\[ F_9 = a + b \cdot c + \overline{a} \cdot \overline{b} + \overline{a} \cdot \overline{c}\]
+\[ F_9 = a + b \cdot c + \overline{b} + \overline{c} \]
+\[ F_9 = a + c + \overline{b} + \overline{c} \]
+\[ F_9 = 1 \]
+
+\end{multicols}
+
+\end{document}
