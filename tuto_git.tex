@@ -1,15 +1,79 @@
 \documentclass[11pt, a4paper]{book}
 \input{package.tex}
+\usepackage{fancyhdr}    % Package pour personnaliser les en-têtes et pieds de page
+
+\pagestyle{fancy}        % Utilisation du style "fancy"
+\fancyhf{}               % Réinitialisation des en-têtes et pieds de page
+\fancyhead[L]{Edoardo Basilico et Vincent Namy }   % Pied de page à gauche
+\fancyhead[C]{OC Robotique}  % Pied de page C
+\fancyhead[R]{2024-2025 -- Collège Sismondi}  % Pied de page à droite
+\fancyfoot[C]{}       % Pied de page au centre avec la date actuelle
+
+
+\makeatletter% since there's an at-sign (@) in the command name
+\let\ps@plain\ps@fancy 
+\makeatother
+
+
 \begin{document}
 
 \setcounter{chapter}{0}
 \chapter{Versionnage de fichiers - Tutoriel git}
 
-%\subsection{}
+\section{Github}
+\begin{enumerate}
+    \item Aller sur github.com et y créer un compte avec son adresse eduge.ch
+    \item  Repositories $\rightarrow$ Create new repository $\rightarrow$ Entrer un nom, cocher public et readme et valider
+    \item Dans le nouveau repo : Clone $\rightarrow$ SSH $\rightarrow$ add a new public key (cf \ref{ssh})
+\end{enumerate}
 
-\begin{figure}
-    \centering
+\begin{figure}[h!]
+\centering
     \includegraphics[width=0.5\linewidth]{ssh.png}
+    \caption{Clone ssh}
+    \label{ssh}
 \end{figure}
+
+\section{Authentification SSH}
+
+\begin{enumerate}
+    \item Sur votre ordinateur, ouvrir un terminal (Konsole)
+    \item Entrer \texttt{ssh-keygen -t rsa} afin de générer une nouvelle paire de clés RSA, appuyez sur Entrée pour passer les questions optionnelles.
+    
+    \item Puis \texttt{gedit .ssh/id\_rsa.pub} et copier l'entièreté de ce fichier dans le champ \texttt{Key} de la page \texttt{Add new SSH Key} ouverte sur votre navigateur, et valider. Cette étape authorise votre clé SSH à accéder à votre compte Github.
+    \item Finalement,\texttt{gedit .ssh/config} et collez-y le texte suivant afin d'indiquer à git quel clé utiliser : \begin{lstlisting}[numbers=none]
+  Host github.com
+      User git
+      IdentityFile ~/.ssh/id_rsa
+\end{lstlisting}
+\end{enumerate}
+
+\section{Git - Clonage}
+
+\begin{enumerate}
+    \item Sur GitHub, retourner à la page du nouveau repository et rouvrir la fenêtre Clone SSH, pour copier le lien SSH du projet. 
+    \item Dans le terminal, rendez-vous dans le dossier où vous voulez cloner le projet en utilisant les commandes :
+        \subitem \texttt{ls} (lister les dossiers) 
+        \subitem et \texttt{cd nom\_dossier} (entrer dans le dossier).
+    \item Une fois dans le bon dossier, \texttt{git clone git\@github.com:blablabla} (en collant votre adresse à la place de celle-ci) pour télécharger le contenu du projet. Vous devriez voir apparaître un nouveau dossier contenant le fichier Readme.md.
+
+\end{enumerate}
+
+\section{Git - Utilisation}
+Dans un terminal, après s'être rendu dans le dossier du repo : 
+\begin{enumerate}
+    \item Pour télécharger les dernières modifications, entrez \texttt{git pull}
+    \item Pour lister l'état de votre dossier, entrez \texttt{git status}
+    \item Pour voir les modifications que vous avez faites localement,  \texttt{git diff}
+    \item Pour ajouter vos modifications locales à un commit,  \texttt{git commit -a -m "[Protocole réseau] Fix erreur dans l'encryption"} (en remplaçant par un message qui décrit vos modifs.)
+    \item Pour pousser vos commits sur le serveur :   \texttt{git push}
+
+Essayer de modifier le ficher Readme.md et de pousser vos modifs.
+\end{enumerate}
+
+\section{Git - Partage}
+Pour travailler à plusieurs sur le même repo,  sur GitHub, dans \texttt{Settings}, cliquer sur \texttt{Add people} et entrer le username à inviter.
+
+Invitez votre voisin·e dans votre projet essayez chacun·e de faire des modifications sur le projet de l'autre.
 
 \end{document}
